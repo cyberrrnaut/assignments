@@ -1,6 +1,6 @@
 function explainParseInt(value) {
   console.log("Original Value:", value);
-  let result = parseInt(value);
+  let result = parseInt(value); // stoi function
   console.log("After parseInt:", result);
 }
 
@@ -17,5 +17,5 @@ function explainParseFloat(value) {
 
 // Example Usage for parseFloat
 explainParseFloat("3.14");
-explainParseFloat("42");
+explainParseFloat("42.0");
 explainParseFloat("42px");

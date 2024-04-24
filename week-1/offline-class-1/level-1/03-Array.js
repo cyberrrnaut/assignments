@@ -39,7 +39,7 @@ function unshiftExample(arr, element) {
   arr.unshift(element);
   console.log("After unshift:", arr);
 }
-unshiftExample([1, 2, 3], 0);
+unshiftExample([1, 2, 3], 4);
 
 // concat()
 function concatExample(arr1, arr2) {
@@ -91,7 +91,7 @@ function findExample(arr) {
   });
   console.log("After find:", found);
 }
-findExample([1, 2, 3, 4, 5]);
+findExample([1, 2, 3, 5, 4]);
 
 // sort()
 function sortExample(arr) {
@@ -103,3 +103,4 @@ function sortExample(arr) {
   console.log("After sort:", arr);
 }
 sortExample([5, 2, 3, 4, 1]);
+
