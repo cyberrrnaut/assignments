@@ -11,7 +11,19 @@
 */
 
 class Todo {
+  constructor() {}
 
+  add(todo) {}
+
+  remove(indexOfTodo) {}
+
+  update(index, updatedTodo) {}
+
+  getAll() {}
+
+  get(indexOfTodo) {}
+
+  clear() { }
 }
 
 module.exports = Todo;

@@ -1,4 +1,4 @@
-  /*
+/*
   Implement a class `Calculator` having below methods
     - initialise a result variable in the constructor and keep updating it after every arithmetic operation
     - add: takes a number and adds it to the result
@@ -16,6 +16,79 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+class Calculator {
+  constructor() {
+    this.result = 0;
+  }
+  
+  add(num) {
+    this.result += num;
+    return this.result;
+  }
+  
+  subtract(num) {
+    this.result -= num;
+    return this.result;
+  }
+  
+  multiply(num) {
+    this.result *= num;
+    return this.result;
+  }
+  
+  divide(num) {
+    if (num === 0) {
+      throw new Error('Division by zero');
+    }
+    this.result /= num;
+    return this.result;
+  }
+
+  clear() {
+    this.result = 0;
+    return this.result;
+  }
+
+  getResult() {
+    return this.result;
+  }
+
+  calculate(exp) {
+    exp = exp.replace(/\s+/g, "").trim(); // Remove spaces
+
+    if (/[^0-9\+\-\*\/\(\)]/.test(exp)) {
+      throw new Error('Invalid characters in expression');
+    }
+
+    const stack = [];
+    let num = 0;
+    let sign = '+';
+
+    for (let i = 0; i < exp.length; i++) {
+      const char = exp[i];
+
+      if (!isNaN(parseInt(char)) || char === '.') {
+        num = num * 10 + parseFloat(char);
+      }
+
+      if (isNaN(parseInt(char)) || i === exp.length - 1) {
+        if (sign === '+') {
+          stack.push(num);
+        } else if (sign === '-') {
+          stack.push(-num);
+        } else if (sign === '*') {
+          stack.push(stack.pop() * num);
+        } else if (sign === '/') {
+          stack.push(stack.pop() / num);
+        }
+
+        sign = char;
+        num = 0;
+      }
+    }
+
+    return stack.reduce((acc, val) => acc + val, 0);
+  }
+}
 
 module.exports = Calculator;

@@ -61,6 +61,15 @@ function trimString(str) {
 }
 trimString("| Hello World |  ");
 
+function clearExtraSpaces(str) {
+  // Remove extra spaces using regular expression
+  console.log("Original String:", str);
+  str = str.replace(/\s+/g, " ").trim();
+  
+  console.log("After clearExtraSpaces:", str);
+}
+clearExtraSpaces("10 +   2 *          (   6 - (4 + 1) / 2) + 7");
+
 // toUpperCase
 function toUpper(str) {
   console.log("Original String:", str);
