@@ -17,5 +17,18 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 
+app.get('/files',(req,res)=>{
+   fs.readdir(path.join(__dirname,'./files/'),(err,files)=>{
+    if(err){
+      return res.statusCode(500).json({error:'Error to access the file'});
+    }else{
+       res.json(files);
+    }
+   })
+})
+app.get('files/:fileName',(req,res)=>{
+ fs.readFile
+})
+
 
 module.exports = app;
