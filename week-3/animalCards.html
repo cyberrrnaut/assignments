@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>poeple cards</title>
+  </head>
+  <body>
+    <script>
+      async function getAnimalData() {
+        const res = await fetch("https://fakerapi.it/api/v1/persons");  //byDefault get request
+        console.log(res);
+      }
+    </script>
+
+    <button onclick="getAnimalData()">Get Animal Data</button>
+  </body>
+</html>

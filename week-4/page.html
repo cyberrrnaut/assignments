@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>week 4</title>
+  </head>
+  <body>
+    <script>
+      let timeout;
+      function debounceCalculateSum() {
+        clearTimeout(timeout);
+        timeout = setTimeout(function(){
+            calculateSum();
+        }, 1000);
+      }
+
+      async function calculateSum() {
+        let a = document.getElementById("no1").value;
+        let b = document.getElementById("no2").value;
+
+        const renderDiv = document.getElementById("output");
+        // renderDiv.innerHTML = parseInt(a) + parseInt(b); -> done by backend server
+
+        let response = await fetch(
+          `https://sum-server.100xdevs.com/sum?a=${a}&b=${b}`
+        );
+        let finalRes = await response.text();
+        console.log(finalRes);
+
+        renderDiv.innerHTML = finalRes;
+      }
+    </script>
+    <div style="display: flex; flex-direction: column; align-items: center">
+      <input
+        oninput="debounceCalculateSum()"
+        type="number"
+        placeholder="first no"
+        id="no1"
+      />
+      <input
+        oninput="debounceCalculateSum()"
+        type="number"
+        placeholder="sec no"
+        id="no2"
+      />
+      <!-- <button onclick="calculateSum()">Add sum</button> -->
+      <span id="output"> </span>
+    </div>
+  </body>
+</html>
