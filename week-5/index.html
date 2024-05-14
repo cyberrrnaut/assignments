@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      let state = {
+        count: 0,
+      };
+      function onButtonpress() {
+        state.count++;
+        reRender();
+      }
+
+      function reRender() {
+        document.getElementById("root").innerHTML = "";
+        const component = buttonComponent(state.count);
+
+        document.getElementById("root").appendChild(component);
+      }
+
+      function buttonComponent(count) {
+        // props
+        const button = document.createElement("button");
+        button.innerHTML = `Counter: ${count}`;
+        button.setAttribute("onclick", `onButtonpress()`);
+
+        return button; // returning html just like react
+      }
+
+      reRender();
+    </script>
+  </body>
+</html>
