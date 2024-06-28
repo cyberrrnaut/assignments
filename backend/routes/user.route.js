@@ -31,6 +31,7 @@ const jwt = require("jsonwebtoken");
 const {authMiddleware} = require("../middleware/auth.middleware.js")
 //salt & hashing
 const bcrypt = require("bcrypt");
+const { log } = require('console');
 
 
 router.post("/signup",async(req,res)=>{
@@ -84,7 +85,35 @@ router.post("/signup",async(req,res)=>{
     
 });
 
-//
+//me
+router.get('/me', async (req, res) => {
+    const authHeader = req.headers.authorization;
+  
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(403).json({ error: 'Unauthorized' });
+    }
+  
+    const token = authHeader.split(' ')[1];
+  
+    try {
+      const decoded = jwt.decode(token); 
+  
+      const userId = decoded.userId;
+  
+      const user = await User.findById(userId); 
+  
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      return res.status(200).json( user );
+    } catch (err) {
+      console.error('JWT Verification Error:', err.message);
+      return res.status(401).json({ error: 'Invalid token' });
+    }
+  });
+  
+
 router.post("/signin", async (req, res) => {
     const body = req.body;
 

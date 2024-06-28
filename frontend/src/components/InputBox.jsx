@@ -1,6 +1,6 @@
 
 
-export const InputBox = ({onChange,label,placeholder,type})=>{
+export const InputBox = ({onChange,label,placeholder,type,loading})=>{
 
     return( <div >
         <label className="text-sm font-medium text-left py-2">

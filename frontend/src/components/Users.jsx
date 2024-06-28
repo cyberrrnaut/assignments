@@ -3,11 +3,11 @@ import { BlackButton } from "./BlackButton";
 import { useEffect, useState } from "react";
 import Avatar from "./Avatar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export const Users = () => {
+export const Users = ({id}) => {
   const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState("");
-  const [balance,setBalance] = useState()
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -31,14 +31,24 @@ export const Users = () => {
       <div className="pl-2">Users</div>
       <InputBox onChange={(e) => setFilter(e.target.value)} label={""} type={"text"} placeholder={"Search Users..."} />
 
-      {users.map((user,key) => (
+      {/* {users.map((user, key) => (
         <User key={key} user={user} />
+      ))} */}
+
+    {users.map((user, key) => (
+        user._id !== id && (
+          <User key={key} user={user} />
+        )
       ))}
+
+      
     </div>
   );
 };
 
 const User = ({ user }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex justify-between pt-3">
       <div className="flex">
@@ -51,7 +61,12 @@ const User = ({ user }) => {
         </span>
       </div>
       <div className="pt-4 pr-2">
-        <BlackButton label={"Send Money"} />
+        <BlackButton
+          onClick={() => {
+            navigate(`/sendmoney?id=${user._id}&name=${user.firstName}`);
+          }}
+          label={"Send Money"}
+        />
       </div>
     </div>
   );
