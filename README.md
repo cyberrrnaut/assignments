@@ -7,3 +7,8 @@ const path = require("path");
 const dotenv = require("dotenv");
 const envPath = path.resolve(__dirname, "../../../.env");
 dotenv.config({ path: envPath });
+
+
+
+PROJECTS AND OTHER RELATED REPO LINKS:
+https://github.com/cyberrrnaut/paytm-ui
